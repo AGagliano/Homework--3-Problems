@@ -1,0 +1,82 @@
+#This code looks at the Python and Cython code to solve problem 4, and gives relative times for each code type.
+
+#Problem 4: Compute determinant of 4X4 matrix double with double precision floating point numbers.
+
+#Python Code:
+    
+    #define all my matrix values
+    a11 = 2.34
+    a12 = 4.57
+    a13 = 3.24
+    a14 = 3.56
+    
+    a21 = 1.23
+    a22 = 3.22
+    a23 = .98
+    a24 = .01
+    
+    a31 = 4.55
+    a32 = 3.24
+    a33 = 2.34
+    a34 = 1.27
+    
+    a41 = 1.56
+    a42 = 3.24
+    a43 = 3.22
+    a44 = 1.23
+    
+    a = matrix([[a11, a12, a13, a14], [a21, a22, a23, a24], [a31, a32, a33, a34], [a41, a42, a43, a44]])
+    
+    print a
+    print a.det()
+
+    #output: [  2.34000000000000   4.57000000000000   3.24000000000000   3.56000000000000]
+              [  1.23000000000000   3.22000000000000  0.980000000000000 0.0100000000000000]
+              [  4.55000000000000   3.24000000000000   2.34000000000000   1.27000000000000]
+              [  1.56000000000000   3.24000000000000   3.22000000000000   1.23000000000000]
+              55.6336374800001
+    #walltime: 0.010709047317504883
+
+#Cython Code:
+
+    cython("""
+
+    import numpy as np
+    
+    cdef double a11 = 2.34    #define all the double floating point variables I want
+    cdef double a12 = 4.57
+    cdef double a13 = 3.24
+    cdef double a14 = 3.56
+    
+    cdef double a21 = 1.23
+    cdef double a22 = 3.22
+    cdef double a23 = .98
+    cdef double a24 = .01
+    
+    cdef double a31 = 4.55
+    cdef double a32 = 3.24
+    cdef double a33 = 2.34
+    cdef double a34 = 1.27
+    
+    cdef double a41 = 1.56
+    cdef double a42 = 3.24
+    cdef double a43 = 3.22
+    cdef double a44 = 1.23
+    
+    #create matrix
+    a = np.matrix([[a11, a12, a13, a14], [a21, a22, a23, a24], [a31, a32, a33, a34], [a41, a42, a43, a44]])
+    
+    print a
+    print np.linalg.det(a)
+    
+    """)
+
+    #output: [[ 2.34  4.57  3.24  3.56]
+               [ 1.23  3.22  0.98  0.01]
+               [ 4.55  3.24  2.34  1.27]
+               [ 1.56  3.24  3.22  1.23]]
+              55.63363748
+
+    #time: 1.5868639945983887
+
+    #In this case, the cython code was slower than the python code.
