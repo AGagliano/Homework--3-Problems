@@ -1,0 +1,57 @@
+#This is my code for problem 5. Both the Python and Cython code are given, as well as relevant output and timing measures.
+
+#Problem 5 asks for multiplication of two 4X4 matrices of double precisin floating point numbers.
+
+#Python code:
+
+    a = matrix([[1.00,0.01,0.03,0.45],[0.67,1.34,0.35,0.99],[0.23,0.45,1.26,0.75],[0.34,0.87,0.23,1.98]])
+    
+    b = matrix([[1.22,2.11,3.44,4.33],[5.66,6.55,7.88,8.77],[8.77,7.88,6.55,5.66],[4.33,3.44,2.11,1.22]])
+    
+    print a*b
+
+    #output: 
+        [3.48820000000000 3.95990000000000 4.66480000000000 5.13650000000000]
+        [15.7580000000000 16.3543000000000 17.2454000000000 17.8417000000000]
+        [17.1253000000000 15.9416000000000 14.1727000000000 12.9890000000000]
+        [15.9295000000000 15.0395000000000 13.7095000000000 12.8195000000000]
+    #time: 0.007421016693115234
+
+#Cython code:
+
+        cython("""
+      
+          import numpy as np
+          
+          cdef double a11 = 2.43   
+          cdef double a12 = 4.57
+          cdef double a13 = 3.24
+          cdef double a14 = 3.56
+          
+          cdef double a21 = 1.23
+          cdef double a22 = 3.22
+          cdef double a23 = .98
+          cdef double a24 = .01
+          
+          cdef double a31 = 4.55
+          cdef double a32 = 3.24
+          cdef double a33 = 2.34
+          cdef double a34 = 1.27
+          
+          cdef double a41 = 1.56
+          cdef double a42 = 3.24
+          cdef double a43 = 3.22
+          cdef double a44 = 1.23
+          
+          #create matrices
+          a = np.matrix([[a11,a12,a13,a14],[a21,a22,a23,a24],[a31,a32,a33,a34],[a41,a42,a43,a44]])
+          b = np.matrix([1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
+      
+          print a*b
+      
+         """)
+
+      #timing: so my code did run through once and appropriately conducted the matrix multiplication,
+            #but when I went back to time the code for some reason it was no longer working.
+            #I'm not quite sure what I did wrong because I didn't change anything...
+
