@@ -1,0 +1,42 @@
+#This file gives the python and cython code for Problem 2, and provides timeings for each.
+
+#Problem 2: Compute the sum of the squares of the positive integers up to n, 
+  #where you may assume that n is at most 10000.
+
+#Python code:
+  
+    def f(n):
+      sum = 0
+      k = 1
+      while k <= n:
+          sum = sum + k**2
+          k = k +1
+      print sum 
+    
+    f(3)
+
+  #output: 13
+
+  #walltime: 1366774475.671407
+
+#Cython code:
+
+    cython("""
+
+    def f(int n):
+        cdef int sum = 0
+        k = 1
+        while k <= n:
+            sum = sum + k**2
+            k = k +1
+        print sum 
+    
+    f(3)
+
+    """)
+
+  #output: 13
+  
+  #walltime: 1.5328669548034668
+
+  #Notice that the cython code is significantly faster.
