@@ -1,0 +1,52 @@
+#Problem 3
+#Compute a list of all primes up to 10,000
+
+
+#General algorithm:
+#start with list of numbers from 2 to 10000
+#starting with the first prime 2, eliminate all multiples of 2 from the list
+#with the next number in list, 3, eliminate all multiples of 3 from the list
+#with the next number in the list (the next prime), eliminate all multiples of this prime
+#continue this process until the list remaining is the list of primes.
+
+
+#Python code:
+    
+    primeslist = range(2,10001)             #establish the initial list of all numbers
+    
+    p = 2
+    while p <= 9991:                        #last prime before 10,000
+        if p in primeslist:
+            k = 2
+            for i in primeslist:
+                if i == p*k:
+                    primeslist.remove(p*k)  #remove if its a multiple which implies not a prime
+                    k = k + 1
+        p = p + 1                           #move on to the next prime number in line and repeat.
+    
+    #print the list of primes
+    primeslist
+
+
+#Cython code:
+
+    primeslist = range(int 2,int 10001)     #establish the initial list of all numbers
+    
+    cdef int p = 2
+    while p <= 9991:                        #last prime before 10,000
+        if p in primeslist:
+            cdef int k = 2
+            for i in primeslist:
+                if i == p*k:
+                    primeslist.remove(p*k)  #remove if its a multiple which implies not a prime
+                    k = k + 1
+        p = p + 1                           #move on to the next prime number in line and repeat.
+    
+    #print the list of primes
+    primeslist
+
+#Timing:
+
+Note, I couldn't actually get my code to run, so there must be a problem with it somewhere,
+so I wasn't able to check the timings of the Python code and the Cython code. But, theoretically
+the Cython code would be significantly faster.
